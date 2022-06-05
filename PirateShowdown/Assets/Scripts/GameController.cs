@@ -8,8 +8,10 @@ public class GameController : MonoBehaviour
     public GameObject[] CharsList;
 
     private int _cont;
+    private GameController SwitchController;
 
     void Start() {
+        SwitchController = GetComponent<GameController>();
         Instance = this;
         _cont = 0;
         SwitchChar();
@@ -41,5 +43,9 @@ public class GameController : MonoBehaviour
         CharsList[_cont].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         CharsList[_cont].GetComponent<Animator>().enabled = true;
 
+    }
+
+    public void DisableSwitch(){
+        SwitchController.enabled = false;
     }
 }

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private Animator Anim;
     private Rigidbody2D Rig;
     private BoxCollider2D BoxCol;
+    private Player PlayerScript;
 
 
     void Start()
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
         Anim = GetComponent<Animator>();
         Rig = GetComponent<Rigidbody2D>();
         BoxCol = GetComponent<BoxCollider2D>();
+        PlayerScript = GetComponent<Player>();
     }
 
     void Update()
@@ -67,8 +69,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col){
+    void OnCollisionEnter2D(Collision2D collision){
         Anim.SetBool("jump", false);
+        if (collision.gameObject.tag == "DeadObject")
+        {
+            PlayerDead();
+        }
+    }
+
+    void PlayerDead(){
+        Anim.SetTrigger("dead");
+        PlayerScript.enabled = false;
+        GameController.Instance.DisableSwitch();
+        UiController.Instace.MenuDead();
     }
 
 }
