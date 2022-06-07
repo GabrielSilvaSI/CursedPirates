@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         Anim.SetTrigger("dead");
         PlayerScript.enabled = false;
         GameController.Instance.DisableSwitch();
-        UiController.Instace.MenuDead();
+        UiController.Instace.Invoke("MenuDead", 1);
     }
 
 }

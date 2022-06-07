@@ -28,6 +28,10 @@ public class UiController : MonoBehaviour
             IsPaused = !IsPaused;
             SwitchPause(IsPaused);
         }
+        if (Input.GetButtonDown("Submit")){
+            IsPaused = !IsPaused;
+            SwitchPause(IsPaused);
+        }
     }
 
     public void ReturnGame(){
