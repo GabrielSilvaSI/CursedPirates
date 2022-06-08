@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public LayerMask IsGround;
     public GameObject[] FriendList;
 
-
     public static Player Instance;
 
     private bool OnGround; 
@@ -20,7 +19,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D Rig;
     private BoxCollider2D BoxCol;
     private Player PlayerScript;
-
+    private AudioSource AudioJump;
 
     void Start()
     {
@@ -29,6 +28,7 @@ public class Player : MonoBehaviour
         Rig = GetComponent<Rigidbody2D>();
         BoxCol = GetComponent<BoxCollider2D>();
         PlayerScript = GetComponent<Player>();
+        AudioJump = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
         
         if(Input.GetButtonDown("Jump") && ((OnGround == true) || (OnFriend == true))){
             Rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+            AudioJump.Play();
             Anim.SetBool("jump", true);
         }
     }
